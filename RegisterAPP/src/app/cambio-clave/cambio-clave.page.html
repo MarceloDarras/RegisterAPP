@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Recuperar contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">cambioClave</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <ion-title>
+      Ingresa tu usuario
+    </ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-card>
+      <ion-card-content>
+        <ion-input [(ngModel)]="Usuario">Usuario</ion-input>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+</ion-content>
