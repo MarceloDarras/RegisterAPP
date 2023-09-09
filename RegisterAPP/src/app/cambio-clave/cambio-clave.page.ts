@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Block } from '@angular/compiler';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cambio-clave',
@@ -9,7 +11,9 @@ export class CambioClavePage implements OnInit {
   registroRecupParseado: any;
 
   Usuario: string="";
-  constructor() { }
+  ClaveNueva: string="";
+  cambioSi: boolean=false;
+  constructor(private alertController: AlertController, private cdr: ChangeDetectorRef, private navCtrl: NavController) { }
 
   ngOnInit() {
     let registroRecup = localStorage.getItem('Nuevo usuario');
@@ -32,10 +36,36 @@ export class CambioClavePage implements OnInit {
     }
   }
 
-  usuarioReconocido(){
+  async usuarioReconocido(){
+    const cambioSi = document.getElementsByClassName('nuevaContra');
     if(this.Usuario == this.registroRecupParseado[4]){
-        
+        const alert = await this.alertController.create({
+          header: "Hola " + this.Usuario,
+          message: "Su contraseña anterior es: " + this.registroRecupParseado[5] + " , deseas cambiarla?",
+          buttons: [{
+            text: "Sí",
+            handler: () => {
+              // Acción a realizar cuando se presiona "Sí"
+              console.log("Botón 'Sí' presionado");
+              // Agrega aquí la lógica para cambiar la contraseña
+            },
+          },
+          {
+            text: "No",
+            role: "cancel",
+            handler: () => {
+              // Acción a realizar cuando se presiona "No" o se cierra el cuadro de diálogo
+              this.navCtrl.navigateForward('/login')
+              console.log("Botón 'No' presionado o cuadro de diálogo cerrado");
+            },
+          },],
+        })
+        await alert.present();
     }
+  }
+
+  cambiarContra(){
+    this.registroRecupParseado[5] == this.ClaveNueva;
   }
 
 }

@@ -19,8 +19,28 @@
   <ion-item>
     <ion-card>
       <ion-card-content>
-        <ion-input [(ngModel)]="Usuario">Usuario</ion-input>
+        <ion-input [(ngModel)]="Usuario" maxlength="6">Usuario</ion-input>
       </ion-card-content>
     </ion-card>
+  </ion-item>
+
+  <ion-item>
+    <ion-button  (click)="usuarioReconocido()">
+      Confirmar
+    </ion-button>
+  </ion-item>
+
+  <ion-item class="nuevaContra">
+    <ion-card>
+      <ion-card-content>
+        <ion-input [(ngModel)]="ClaveNueva" type="password" maxlength="4">Nueva contraseña</ion-input>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="cambiarContra()">
+      Cambiar
+    </ion-button>
   </ion-item>
 </ion-content>
