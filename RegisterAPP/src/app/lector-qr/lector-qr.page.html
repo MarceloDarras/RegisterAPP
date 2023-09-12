@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>LectorQR</ion-title>
+    <ion-title>Ingresa a tu clase</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">LectorQR</ion-title>
+      <ion-title size="large">Ingresa a tu clase</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-content class="qr">
+    <div id="container" class="ion-padding">
+      <ion-button expand="full" (click)="openScanner()">Escanea el codigo de tu clase</ion-button>
+      <div id="videoContainer" [ngClass]="{ 'hide-result': isScanning }">
+        <video #videoElement autoplay="true"></video>
+      </div>
+    </div>
+  </ion-content>
 </ion-content>

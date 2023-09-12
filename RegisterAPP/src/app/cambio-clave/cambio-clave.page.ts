@@ -1,6 +1,7 @@
 import { Block } from '@angular/compiler';
+import { ViewChild } from '@angular/core';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, IonInput, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cambio-clave',
@@ -8,11 +9,14 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['./cambio-clave.page.scss'],
 })
 export class CambioClavePage implements OnInit {
+  @ViewChild('nuevaContraseña', { static: false }) nuevaContraseña!: IonInput;
+  
   registroRecupParseado: any;
 
   Usuario: string="";
   ClaveNueva: string="";
   cambioSi: boolean=false;
+  isVisible: boolean=true;
   constructor(private alertController: AlertController, private cdr: ChangeDetectorRef, private navCtrl: NavController) { }
 
   ngOnInit() {
@@ -34,6 +38,11 @@ export class CambioClavePage implements OnInit {
         console.error('Error al analizar el valor del LocalStorage:', error);
       }
     }
+}
+
+  ionViewDidEnter() {
+    this.isVisible = false;
+    this.nuevaContraseña.disabled = true;
   }
 
   async usuarioReconocido(){
@@ -46,6 +55,8 @@ export class CambioClavePage implements OnInit {
             text: "Sí",
             handler: () => {
               // Acción a realizar cuando se presiona "Sí"
+              this.nuevaContraseña.disabled = false;
+              this.isVisible = true;
               console.log("Botón 'Sí' presionado");
               // Agrega aquí la lógica para cambiar la contraseña
             },
@@ -64,8 +75,35 @@ export class CambioClavePage implements OnInit {
     }
   }
 
-  cambiarContra(){
-    this.registroRecupParseado[5] == this.ClaveNueva;
+  async cambiarContra(){
+    if(this.registroRecupParseado[5] != this.ClaveNueva){
+      this.registroRecupParseado[5] = this.ClaveNueva;
+      localStorage.setItem('Nuevo usuario', JSON.stringify(this.registroRecupParseado));
+
+      const alert = await this.alertController.create({
+        header: "Cambio exitoso",
+        message: "Tu contraseña se ha cambiado exitosamente",
+        buttons: [{
+          text:"OK",
+          handler: () =>{
+            const actualizacionEvento = new Event('datosActualizados');
+            window.dispatchEvent(actualizacionEvento);
+            this.navCtrl.navigateForward("/login");
+          }
+        }]
+      })
+      await alert.present();
+
+    }else{
+      const alert = await this.alertController.create({
+        header: "Error",
+        message: "No se pueden utilizar contraseñas usadas anteriormente",
+        buttons: ["OK"],
+      })
+      await alert.present();
+    }
+    
+
   }
 
 }

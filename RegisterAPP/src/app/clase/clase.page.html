@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Clase Registrada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Su clase está registrada</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item>
+    <ion-card>
+      <ion-card-content>
+        <ion-title>Datos Profesor</ion-title>
+        <ion-label>{{Profe}}</ion-label>
+        <ion-label>{{hora}}</ion-label>
+        <ion-label>{{sala}}</ion-label>
+        <ion-label>{{dia}}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  <ion-item>
+    <ion-card>
+      <ion-card-content>
+        <ion-title>Datos Alumnos </ion-title>
+        <ion-label>Nombre: {{nombre}}</ion-label>
+        <ion-label>Apellido: {{apellido}}</ion-label>
+        <ion-label>Rut: {{rut}}</ion-label>
+        <strong>Timestamp: {{formatedtime}}</strong>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+
+  
+
+</ion-content>

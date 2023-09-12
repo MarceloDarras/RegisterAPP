@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'cambio-clave',
     loadChildren: () => import('./cambio-clave/cambio-clave.module').then( m => m.CambioClavePageModule)
   },
+  {
+    path: 'clase',
+    loadChildren: () => import('./clase/clase.module').then( m => m.ClasePageModule)
+  },
 ];
 
 @NgModule({

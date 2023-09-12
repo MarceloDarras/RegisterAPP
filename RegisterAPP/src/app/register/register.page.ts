@@ -57,6 +57,9 @@ export class RegisterPage implements OnInit {
       let registroJSON = JSON.stringify(registro);
       localStorage.setItem('Nuevo usuario', registroJSON);
 
+      const actualizacionEvento = new Event('datosActualizados');
+      window.dispatchEvent(actualizacionEvento);
+
       this.navctrl.navigateForward('/login')
     }
   }

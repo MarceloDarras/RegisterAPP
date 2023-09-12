@@ -36,18 +36,23 @@
   <ion-item>
     <ion-card>
       <ion-card-content>
-        <ion-input [(ngModel)]="rut" minlegth="12" maxlength="12">RUT:</ion-input>
+        <ion-input [(ngModel)]="rut" maxlength="10">RUT(Sin puntos y con guion):</ion-input>
         <ion-label class="error_mensaje" [class.visible]="rutValido">El rut debe poseer 12 digitos</ion-label>
       </ion-card-content>
     </ion-card>
   </ion-item>
   <ion-item>
     <ion-label>Carrera</ion-label>
-    <ion-select [(ngModel)]="carrera">
-      <ion-select-option value="1">Ingeniería en informatica</ion-select-option>
-      <ion-select-option value="2">Informatica Biomedica</ion-select-option>
-      <ion-select-option value="3">Mecanica</ion-select-option>
-    </ion-select>
+    <ion-card>
+      <ion-card-content>
+        <ion-select [(ngModel)]="carrera">
+          <ion-select-option value="1">Ingeniería en informatica</ion-select-option>
+          <ion-select-option value="2">Tecnico en programación</ion-select-option>
+          <ion-select-option value="3">Informatica Biomedica</ion-select-option>
+          <ion-select-option value="4">Mecanica</ion-select-option>
+        </ion-select>
+      </ion-card-content>
+    </ion-card>
     <ion-label class="error_mensaje" [class.visible]="carreraValida">El nombre debe poseer 3 digitos como minimo</ion-label>
   </ion-item>
   <ion-item>

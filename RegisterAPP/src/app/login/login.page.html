@@ -20,7 +20,7 @@
   <ion-item lines="full">
     <ion-card>
       <ion-card-content>
-        <ion-input [(ngModel)]="nombre" minlength="6" maxlength="6">Usuario:</ion-input>
+        <ion-input id="nombre" (input)="play2()" [(ngModel)]="nombre" minlength="6" maxlength="6">Usuario:</ion-input>
         <ion-label class="error_mensaje" [class.visible]="nombreValido" >El usuario debe tener 6 digitos</ion-label>
       </ion-card-content>
     </ion-card>
@@ -28,7 +28,7 @@
     <ion-item lines="full">
       <ion-card>
         <ion-card-content>
-          <ion-input type="password" [(ngModel)]="clave" minlength="4" maxlength="4">Contraseña:</ion-input>
+          <ion-input id="clave" (input)="play()" type="password" [(ngModel)]="clave" minlength="4" maxlength="4">Contraseña:</ion-input>
           <ion-label class="error_mensaje" [class.visible]="claveValida">La contraseña debe poseer 4 digitos</ion-label>
         </ion-card-content>
       </ion-card>
